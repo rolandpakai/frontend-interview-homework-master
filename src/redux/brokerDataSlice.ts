@@ -22,11 +22,13 @@ export const brokerDataSlice = createSlice({
 
             const forex = data
 			    .filter((broker) => broker.isForex)
-			    .sort((a, b) => b?.score - a?.score);
+			    .sort((a, b) => b?.score - a?.score)
+                .slice(0, 5);
 
             const stock = data
 			    .filter((broker) => broker.isStock)
-			    .sort((a, b) => b?.score - a?.score);
+			    .sort((a, b) => b?.score - a?.score)
+                .slice(0, 5);
 			
             return {
                 ...state, 
