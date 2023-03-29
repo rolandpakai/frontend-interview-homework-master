@@ -10,6 +10,9 @@ import Container from '../components/Container';
 import Stack from '../components/Stack';
 import TopList, { TopType } from '../components/TopList';
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
 export default function Home() {
     const store = useMemo(() => {
         return makeStore()
@@ -66,12 +69,16 @@ export default function Home() {
                                                 </div>
                                             </div>
                                             <div className="flex items-center relative w-max flex-col">
-                                                <a className="flex flex-row items-center justify-center font-medium uppercase cursor-pointer select-none rounded-lg box-border whitespace-nowrap text-xs sm:text-sm h-6 sm:h-8 px-[9px] sm:px-[13px] bg-blue-800 text-white" 
+                                                <a className="flex flex-row items-center justify-center font-medium uppercase cursor-pointer select-none rounded-lg box-border whitespace-nowrap text-xs sm:text-sm h-6 sm:h-8 px-[12px] sm:px-[20px] bg-blue-800 text-white" 
                                                     rel="noreferrer nofollow" 
                                                     target="_blank" 
                                                     href=""
                                                 >
                                                 Visit Broker
+                                                <FontAwesomeIcon 
+                                                    icon={faArrowRight}
+                                                    className="ml-2"
+                                                />
                                                 </a>
                                             </div>
                                         </div>
