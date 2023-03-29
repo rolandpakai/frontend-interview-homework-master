@@ -19,7 +19,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
                   <div className="flex items-center justify-start w-7 pl-1 font-semibold">{index}.</div>
                   <div className="w-full">
                       <div className="flex items-center text-sm font-semibold">
-                          <div className="flex items-center pr-1.5">
+                          <div className="flex items-center mr-1.5">
                               <span className="w-8 h-8 bg-cover no-gallery" style={{backgroundImage: `url(${logoUrl})`}}></span>
                           </div>
                           <div className="">{name}</div>
