@@ -2,16 +2,11 @@ import { Provider, useDispatch } from "react-redux";
 import { useMemo, useEffect } from "react";
 
 import { makeStore } from "../redux/store";
-import { setBrokers } from "../redux/brokerDataSlice";
-import { exampleBrokerData } from "../data/brokers";
 import Wrapper from '../components/Wrapper';
 import Header from '../components/Header';
 import Container from '../components/Container';
 import Stack from '../components/Stack';
 import TopList, { TopType } from '../components/TopList';
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import SearchContainer from '../components/SearchContainer';
 
 export default function Home() {
@@ -28,10 +23,6 @@ export default function Home() {
             label: 'Forex'
         },
     ];
-
-    useEffect(() => {
-	    store.dispatch(setBrokers(exampleBrokerData));
-	}, []);
 
     return (
         <Provider store={store}>

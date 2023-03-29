@@ -1,6 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import type { Broker } from "../data/brokers";
 
+import { exampleBrokerData } from "../data/brokers";
+
 export type BrokerDataSlice = {
     all: Broker[],
     forex: Broker[],
@@ -8,9 +10,15 @@ export type BrokerDataSlice = {
 };
 
 const initialState: BrokerDataSlice = {
-    all: [],
-    forex: [],
-    stock: [],
+    all: exampleBrokerData,
+    forex: exampleBrokerData
+            .filter((broker) => broker.isForex)
+            .sort((a, b) => b?.score - a?.score)
+            .slice(0, 5),
+    stock: exampleBrokerData
+            .filter((broker) => broker.isStock)
+            .sort((a, b) => b?.score - a?.score)
+            .slice(0, 5),
 };
 
 export const brokerDataSlice = createSlice({
