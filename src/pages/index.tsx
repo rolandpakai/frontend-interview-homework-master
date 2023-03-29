@@ -4,25 +4,28 @@ import { useMemo, useEffect } from "react";
 import { makeStore } from "../redux/store";
 import { setBrokers } from "../redux/brokerDataSlice";
 import { exampleBrokerData } from "../data/brokers";
-import {
-    Tabs,
-    TabsHeader,
-    TabsBody,
-    Tab,
-    TabPanel,
-  } from "@material-tailwind/react";
 
 import Wrapper from '../components/Wrapper';
 import Header from '../components/Header';
 import Container from '../components/Container';
 import Stack from '../components/Stack';
 import Box from '../components/Box';
-import TabList from '../components/TabList';
+import TopList, { TopType } from '../components/TopList';
 
 export default function Home() {
     const store = useMemo(() => {
         return makeStore()
     }, []);
+
+    const topTypes: TopType[] = [
+        {
+            key: 'stock', 
+            label: 'Stock'
+        },{
+            key: 'forex', 
+            label: 'Forex'
+        },
+    ];
 
     useEffect(() => {
 	    store.dispatch(setBrokers(exampleBrokerData));
@@ -42,26 +45,10 @@ export default function Home() {
                         </div>
                     </Stack>
                     <Stack width="lg:w-1/2">
-                        <Box title={"Top 5 Brokers"}>
-                            <Tabs value="stock">
-                                <TabsHeader>
-                                    <Tab key={"stock"} value={"stock"}>
-                                        {"Stock"}
-                                    </Tab>
-                                    <Tab key={"forex"} value={"forex"}>
-                                        {"Forex"}
-                                    </Tab>
-                                </TabsHeader>
-                                <TabsBody>
-                                    <TabPanel key={"stock"} value={"stock"}>
-                                        <TabList storeKey={"stock"} />
-                                    </TabPanel>
-                                    <TabPanel key={"forex"} value={"forex"}>
-                                        <TabList storeKey={"forex"} />
-                                    </TabPanel>
-                                </TabsBody>
-                            </Tabs>
-                        </Box>
+                        <TopList 
+                            label={"Top 5 Brokers"}
+                            types={topTypes}
+                        />
                     </Stack>
                 </Container>
             </Wrapper>
