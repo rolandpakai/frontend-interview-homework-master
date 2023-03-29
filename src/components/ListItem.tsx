@@ -15,7 +15,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
 
   return (
     <div className="w-full border-b px-1 last:border-none border-secondary-50 hover:bg-blue-100">
-      <a href={linkUrl} target="_blank" className="openAccountBtn">
+      <a href={linkUrl} target="_blank">
           <div className="hover:bg-secondary-50 mx-2 py-3">
               <div className="flex items-center justify-between">
                   <div className="flex items-center justify-start w-7 pl-1 font-semibold">{index}.</div>
