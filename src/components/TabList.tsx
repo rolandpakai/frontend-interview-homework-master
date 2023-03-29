@@ -12,7 +12,7 @@ const TabList: React.FC<TabListProps> = (props: TabListProps) => {
   const listData = useSelector((state : AppState) => state.brokerData[storeKey as keyof BrokerDataSlice]);
 
   return (
-    <div className="pb-13 h-72">
+    <div className="h-72 pt-1 mb-3">
       {listData.map((data, index) => (
         <ListItem
           key={data.id}
