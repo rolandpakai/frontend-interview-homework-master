@@ -9,9 +9,3 @@
     @apply font-geomanist bg-blue-100
   }
 }
-
-@layer components {
-  .arrow-right {
-    @apply w-6 h-6 bg-[url('../../public/assets/keyboard-arrow-right.svg')]
-  }
-}
