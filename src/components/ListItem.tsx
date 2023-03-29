@@ -4,6 +4,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 type ListItemProps = { 
   index: number,
+  id: number,
   name: string,
   score: number,
   linkUrl: string,
@@ -11,7 +12,7 @@ type ListItemProps = {
 };
 
 const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
-  const { index, name, score, linkUrl, logoUrl } = props;
+  const { index, id, name, score, linkUrl, logoUrl } = props;
 
   return (
     <div className="w-full border-b px-1 last:border-none border-secondary-50 hover:bg-blue-100">

@@ -14,6 +14,7 @@ const SearchResult: React.FC<SearchResultProps> = (props) => {
     <div className="w-full bg-white rounded my-10">
       {data.map((item, index) => (
         <SearchResultItem
+          id={item.id}
           key={item.id}
           name={item.name}
           linkUrl={item.linkUrl} 

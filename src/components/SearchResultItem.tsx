@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 type SearchResultItemProps = { 
+  id: number,
   name: string,
   linkUrl: string,
   logoUrl: string,
 };
 
 const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultItemProps) => {
-  const { name, linkUrl, logoUrl } = props;
+  const { id, name, linkUrl, logoUrl } = props;
 
   return (
     <div className="py-4 mx-2">

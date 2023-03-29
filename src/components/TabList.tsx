@@ -17,6 +17,7 @@ const TabList: React.FC<TabListProps> = (props: TabListProps) => {
         <ListItem
           key={item.id}
           index={index + 1}
+          id={item.id}
           name={item.name}
           score={item.score}
           linkUrl={item.linkUrl} 
