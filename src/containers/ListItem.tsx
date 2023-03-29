@@ -3,12 +3,13 @@ import React from 'react'
 type ListItemProps = { 
   index: number,
   name: string,
+  score: number,
   linkUrl: string,
   logoUrl: string,
 };
 
 const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
-  const { index, name, linkUrl, logoUrl } = props;
+  const { index, name, score, linkUrl, logoUrl } = props;
 
   return (
     <div className="w-full border-b last:border-none border-secondary-50">
@@ -21,7 +22,8 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
                           <div className="flex items-center pr-1.5">
                               <span className="w-8 h-8 bg-cover no-gallery" style={{backgroundImage: `url(${logoUrl})`}}></span>
                           </div>
-                          <div>{name}</div>
+                          <div className="">{name}</div>
+                          <div className="ml-auto mx-3">{score}</div>
                       </div>
                   </div>
                   <span className="svg_icon arrow-right"></span>
