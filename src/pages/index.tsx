@@ -1,15 +1,9 @@
-import { Provider } from "react-redux";
-import { useMemo } from "react";
+import { Provider, useDispatch } from "react-redux";
+import { useMemo, useEffect } from "react";
 
 import { makeStore } from "../redux/store";
-import Wrapper from '../containers/Wrapper';
-import Header from '../containers/Header';
-import Container from '../containers/Container';
-import Stack from '../containers/Stack';
-import Box from '../containers/Box';
-import ListItem from '../containers/ListItem';
-import TabBox from '../containers/TabBox';
-
+import { setBrokers } from "../redux/brokerDataSlice";
+import { exampleBrokerData } from "../data/brokers";
 import {
     Tabs,
     TabsHeader,
@@ -18,10 +12,21 @@ import {
     TabPanel,
   } from "@material-tailwind/react";
 
+import Wrapper from '../containers/Wrapper';
+import Header from '../containers/Header';
+import Container from '../containers/Container';
+import Stack from '../containers/Stack';
+import Box from '../containers/Box';
+import TabList from '../containers/TabList';
+
 export default function Home() {
     const store = useMemo(() => {
         return makeStore()
     }, []);
+
+    useEffect(() => {
+	    store.dispatch(setBrokers(exampleBrokerData));
+	}, []);
 
     return (
         <Provider store={store}>
@@ -36,71 +41,29 @@ export default function Home() {
                             <a className="text-indigo-500 inline-flex items-center">Learn More</a>
                         </div>
                     </Stack>
-
-                <Stack width="lg:w-1/2">
-                    <Box title={"Top 5 brokers"}>
-                                <Tabs value="stock">
-                                    <TabsHeader>
-                                        <Tab key={"stock"} value={"stock"}>
-                                            {"Stock"}
-                                        </Tab>
-                                        <Tab key={"forex"} value={"forex"}>
-                                            {"Forex"}
-                                        </Tab>
-                                    </TabsHeader>
-                                    <TabsBody>
-                                        <TabPanel key={"stock"} value={"stock"}>
-                                        <TabBox>
-                                                <ListItem
-                                                    index={1} 
-                                                    name={"TradeStation"} 
-                                                    linkUrl={"https://brokerchooser.com/broker-reviews/interactive-brokers-review"} 
-                                                    logoUrl={"https://brokerchooser.com/uploads/broker_logos/interactive-brokers-review.png"}
-                                                />
-                                                <ListItem
-                                                    index={1} 
-                                                    name={"TradeStation"} 
-                                                    linkUrl={"https://brokerchooser.com/broker-reviews/interactive-brokers-review"} 
-                                                    logoUrl={"https://brokerchooser.com/uploads/broker_logos/interactive-brokers-review.png"}
-                                                />
-                                                <ListItem
-                                                    index={1} 
-                                                    name={"TradeStation"} 
-                                                    linkUrl={"https://brokerchooser.com/broker-reviews/interactive-brokers-review"} 
-                                                    logoUrl={"https://brokerchooser.com/uploads/broker_logos/interactive-brokers-review.png"}
-                                                />
-                                                <ListItem
-                                                    index={1} 
-                                                    name={"TradeStation"} 
-                                                    linkUrl={"https://brokerchooser.com/broker-reviews/interactive-brokers-review"} 
-                                                    logoUrl={"https://brokerchooser.com/uploads/broker_logos/interactive-brokers-review.png"}
-                                                />
-                                                <ListItem
-                                                    index={1} 
-                                                    name={"TradeStation"} 
-                                                    linkUrl={"https://brokerchooser.com/broker-reviews/interactive-brokers-review"} 
-                                                    logoUrl={"https://brokerchooser.com/uploads/broker_logos/interactive-brokers-review.png"}
-                                                />
-                                            </TabBox>
-                                        </TabPanel>
-                                        <TabPanel key={"forex"} value={"forex"}>
-                                            <TabBox>
-                                                <ListItem
-                                                    index={1} 
-                                                    name={"TradeStation"} 
-                                                    linkUrl={"https://brokerchooser.com/broker-reviews/interactive-brokers-review"} 
-                                                    logoUrl={"https://brokerchooser.com/uploads/broker_logos/interactive-brokers-review.png"}
-                                                />
-                                                </TabBox>
-                                        </TabPanel>
-                                    </TabsBody>
-                                </Tabs>
-                    </Box>
-                </Stack>
-
-
-
-            </Container>
+                    <Stack width="lg:w-1/2">
+                        <Box title={"Top 5 Brokers"}>
+                            <Tabs value="stock">
+                                <TabsHeader>
+                                    <Tab key={"stock"} value={"stock"}>
+                                        {"Stock"}
+                                    </Tab>
+                                    <Tab key={"forex"} value={"forex"}>
+                                        {"Forex"}
+                                    </Tab>
+                                </TabsHeader>
+                                <TabsBody>
+                                    <TabPanel key={"stock"} value={"stock"}>
+                                        <TabList storeKey={"stock"} />
+                                    </TabPanel>
+                                    <TabPanel key={"forex"} value={"forex"}>
+                                        <TabList storeKey={"forex"} />
+                                    </TabPanel>
+                                </TabsBody>
+                            </Tabs>
+                        </Box>
+                    </Stack>
+                </Container>
             </Wrapper>
         </Provider>
     )
