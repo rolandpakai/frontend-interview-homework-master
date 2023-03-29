@@ -6,7 +6,7 @@
 
 @layer base {
   html, body {
-    @apply font-geomanist
+    @apply font-geomanist bg-blue-100
   }
 }
 
