@@ -1,4 +1,6 @@
 import React from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 type ListItemProps = { 
   index: number,
@@ -12,9 +14,9 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
   const { index, name, score, linkUrl, logoUrl } = props;
 
   return (
-    <div className="w-full border-b last:border-none border-secondary-50 hover:bg-blue-100">
+    <div className="w-full border-b px-1 last:border-none border-secondary-50 hover:bg-blue-100">
       <a href={linkUrl} target="_blank" className="openAccountBtn">
-          <div className="hover:bg-secondary-50 py-3">
+          <div className="hover:bg-secondary-50 mx-2 py-3">
               <div className="flex items-center justify-between">
                   <div className="flex items-center justify-start w-7 pl-1 font-semibold">{index}.</div>
                   <div className="w-full">
@@ -26,7 +28,10 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
                           <div className="ml-auto mx-3">{score}</div>
                       </div>
                   </div>
-                  <span className="svg_icon arrow-right"></span>
+                  <FontAwesomeIcon 
+                    icon={faChevronRight}
+                    className="ml-2"
+                  />
               </div>
           </div>
       </a>
