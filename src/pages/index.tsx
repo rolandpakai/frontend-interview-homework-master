@@ -1,5 +1,5 @@
-import { Provider, useDispatch } from "react-redux";
-import { useMemo, useEffect } from "react";
+import { Provider } from "react-redux";
+import { useMemo } from "react";
 
 import { makeStore } from "../redux/store";
 import Wrapper from '../components/Wrapper';
