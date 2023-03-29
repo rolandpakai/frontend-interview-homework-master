@@ -2,6 +2,7 @@ import React from 'react'
 
 import SearchResultItem from './SearchResultItem';
 import { Broker } from '../data/brokers';
+import { BROKER_SEARCH_LIST_ID } from "../logic/event";
 
 type SearchResultProps = { 
   data: Broker[],
@@ -19,6 +20,7 @@ const SearchResult: React.FC<SearchResultProps> = (props) => {
           name={item.name}
           linkUrl={item.linkUrl} 
           logoUrl={item.logoUrl} 
+          measurementId={BROKER_SEARCH_LIST_ID}
         />
       ))}
     </div>

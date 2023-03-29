@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ListItem from './ListItem';
 import { AppState } from '../redux/store';
 import { BrokerDataSlice } from '../redux/brokerDataSlice';
+import { TabListMap, TAB_LIST_MAP } from '../logic/event';
 
 type TabListProps = { storeKey: string }
 
@@ -21,7 +22,8 @@ const TabList: React.FC<TabListProps> = (props: TabListProps) => {
           name={item.name}
           score={item.score}
           linkUrl={item.linkUrl} 
-          logoUrl={item.logoUrl} 
+          logoUrl={item.logoUrl}
+          measurementId={TAB_LIST_MAP[storeKey as keyof TabListMap]}
         />
       ))}
     </div>

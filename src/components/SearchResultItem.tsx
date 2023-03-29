@@ -2,15 +2,26 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
+import { sendEvent, MeasurementId } from "../logic/event";
+
 type SearchResultItemProps = { 
   id: number,
   name: string,
   linkUrl: string,
   logoUrl: string,
+  measurementId: MeasurementId,
 };
 
 const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultItemProps) => {
-  const { id, name, linkUrl, logoUrl } = props;
+  const { id, name, linkUrl, logoUrl, measurementId } = props;
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>, id: number) => {
+    sendEvent({
+      type: 'click',
+      brokerId: id,
+      measurementId 
+    });
+  };
 
   return (
     <div className="py-4 mx-2">
@@ -25,9 +36,11 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultIt
           </div>
           <div className="flex items-center relative w-max flex-col">
               <a 
-                className="flex flex-row items-center justify-center font-medium uppercase cursor-pointer select-none rounded-lg box-border whitespace-nowrap text-xs sm:text-sm h-6 sm:h-8 px-[12px] sm:px-[20px] bg-blue-800 text-white" 
                 href={linkUrl}
+                onClick={(e) => handleClick(e, id)}
+                data-id={id}
                 target="_blank" 
+                className="flex flex-row items-center justify-center font-medium uppercase cursor-pointer select-none rounded-lg box-border whitespace-nowrap text-xs sm:text-sm h-6 sm:h-8 px-[12px] sm:px-[20px] bg-blue-800 text-white" 
               >
                 Visit Broker
                 <FontAwesomeIcon 
