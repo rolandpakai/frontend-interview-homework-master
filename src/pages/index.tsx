@@ -12,12 +12,12 @@ import {
     TabPanel,
   } from "@material-tailwind/react";
 
-import Wrapper from '../containers/Wrapper';
-import Header from '../containers/Header';
-import Container from '../containers/Container';
-import Stack from '../containers/Stack';
-import Box from '../containers/Box';
-import TabList from '../containers/TabList';
+import Wrapper from '../components/Wrapper';
+import Header from '../components/Header';
+import Container from '../components/Container';
+import Stack from '../components/Stack';
+import Box from '../components/Box';
+import TabList from '../components/TabList';
 
 export default function Home() {
     const store = useMemo(() => {
