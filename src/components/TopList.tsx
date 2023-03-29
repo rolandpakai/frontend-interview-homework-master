@@ -11,32 +11,32 @@ import {
 import Box from '../components/Box';
 import TabList from '../components/TabList';
 
-export type TopType = { 
+export type TopCategory = { 
   key: string,
   label: string,
 };
 
 type TopListProps = {
   label: string, 
-  types: TopType[],
+  categories: TopCategory[],
 };
 
 const TopList: React.FC<TopListProps> = (props: TopListProps) => {
-  const { label, types } = props;
+  const { label, categories } = props;
   const tabs: React.ReactElement[] = [];
   const tabPanels: React.ReactElement[] = [];
-  const firstTabValue = types[0].key;
+  const firstTabValue = categories[0].key;
 
-  types.forEach((type) => {
+  categories.forEach((category) => {
     tabs.push((
-      <Tab key={type.key} value={type.key}>
-        {type.label}
+      <Tab key={category.key} value={category.key}>
+        {category.label}
       </Tab>
     ));
 
     tabPanels.push((
-      <TabPanel key={type.key} value={type.key}>
-        <TabList storeKey={type.key} />
+      <TabPanel key={category.key} value={category.key}>
+        <TabList storeKey={category.key} />
       </TabPanel>
     ));
   });

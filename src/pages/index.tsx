@@ -6,7 +6,7 @@ import Wrapper from '../components/Wrapper';
 import Header from '../components/Header';
 import Container from '../components/Container';
 import Stack from '../components/Stack';
-import TopList, { TopType } from '../components/TopList';
+import TopList, { TopCategory } from '../components/TopList';
 import SearchContainer from '../components/SearchContainer';
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
         return makeStore()
     }, []);
 
-    const topTypes: TopType[] = [
+    const topCategories: TopCategory[] = [
         {
             key: 'stock', 
             label: 'Stock'
@@ -38,7 +38,7 @@ export default function Home() {
                     <Stack width="lg:w-1/2">
                         <TopList 
                             label={"Top 5 Brokers"}
-                            types={topTypes}
+                            categories={topCategories}
                         />
                     </Stack>
                 </Container>
