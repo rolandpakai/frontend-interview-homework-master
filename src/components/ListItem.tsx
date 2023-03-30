@@ -1,8 +1,10 @@
 import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { useSelector, useDispatch } from 'react-redux';
 
-import { sendEvent, MeasurementId } from "../logic/event";
+import { AppState } from '../redux/store';
+import { EventArg, EventType, MeasurementId, eventManager } from "../logic/event";
 
 type ListItemProps = { 
   index: number,
@@ -16,18 +18,22 @@ type ListItemProps = {
 
 const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
   const { index, id, name, score, linkUrl, logoUrl, measurementId } = props;
+  const events = useSelector((state : AppState) => state.eventData);
+  const dispatchEvent = useDispatch();
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>, id: number) => {
-    sendEvent({
-      type: 'click',
+  const handleClick = () => {
+    const eventArg = {
+      type: 'click' as EventType,
       brokerId: id,
       measurementId 
-    });
+    } as EventArg;
+
+    eventManager({eventArg, events, dispatchEvent});
   };
 
   return (
     <div className="w-full border-b px-1 last:border-none border-secondary-50 hover:bg-blue-100">
-      <a href={linkUrl} onClick={(e) => handleClick(e, id)} target="_blank">
+      <a href={linkUrl} onClick={handleClick} target="_blank">
           <div className="hover:bg-secondary-50 mx-2 py-3">
               <div className="flex items-center justify-between">
                   <div className="flex items-center justify-start w-7 pl-1 font-semibold">{index}.</div>

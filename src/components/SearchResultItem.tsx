@@ -1,8 +1,10 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-import { sendEvent, MeasurementId } from "../logic/event";
+import { AppState } from '../redux/store';
+import { EventArg, EventType, MeasurementId, eventManager } from "../logic/event";
 
 type SearchResultItemProps = { 
   id: number,
@@ -14,13 +16,17 @@ type SearchResultItemProps = {
 
 const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultItemProps) => {
   const { id, name, linkUrl, logoUrl, measurementId } = props;
+  const events = useSelector((state : AppState) => state.eventData);
+  const dispatchEvent = useDispatch();
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>, id: number) => {
-    sendEvent({
-      type: 'click',
+  const handleClick = () => {
+    const eventArg = {
+      type: 'click' as EventType,
       brokerId: id,
       measurementId 
-    });
+    } as EventArg;
+
+    eventManager({eventArg, events, dispatchEvent});
   };
 
   return (
@@ -37,7 +43,7 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultIt
           <div className="flex items-center relative w-max flex-col">
               <a 
                 href={linkUrl}
-                onClick={(e) => handleClick(e, id)}
+                onClick={(e) => handleClick(id, measurementId)}
                 data-id={id}
                 target="_blank" 
                 className="flex flex-row items-center justify-center font-medium uppercase cursor-pointer select-none rounded-lg box-border whitespace-nowrap text-xs sm:text-sm h-6 sm:h-8 px-[12px] sm:px-[20px] bg-blue-800 text-white" 
