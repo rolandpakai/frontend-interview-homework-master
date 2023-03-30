@@ -43,7 +43,7 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultIt
           <div className="flex items-center relative w-max flex-col">
               <a 
                 href={linkUrl}
-                onClick={(e) => handleClick(id, measurementId)}
+                onClick={handleClick}
                 data-id={id}
                 target="_blank" 
                 className="flex flex-row items-center justify-center font-medium uppercase cursor-pointer select-none rounded-lg box-border whitespace-nowrap text-xs sm:text-sm h-6 sm:h-8 px-[12px] sm:px-[20px] bg-blue-800 text-white" 
