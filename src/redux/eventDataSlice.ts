@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-export type EventDataState = string [];
+export type EventDataSlice = string [];
 
-const initialState: EventDataState = [];
+const initialState: EventDataSlice = [];
 
 export const eventDataSlice = createSlice({
     name: "eventData",

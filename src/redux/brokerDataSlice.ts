@@ -3,13 +3,13 @@ import type { Broker } from "../data/brokers";
 
 import { exampleBrokerData } from "../data/brokers";
 
-export type BrokerDataState = {
+export type BrokerDataSlice = {
     all: Broker[],
     forex: Broker[],
     stock: Broker[],
 };
 
-const initialState: BrokerDataState = {
+const initialState: BrokerDataSlice = {
     all: exampleBrokerData.sort((a, b) => a.name.localeCompare(b.name)),
     forex: exampleBrokerData
             .filter((broker) => broker?.isForex)
