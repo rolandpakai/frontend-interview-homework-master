@@ -12,11 +12,11 @@ export type BrokerDataState = {
 const initialState: BrokerDataState = {
     all: exampleBrokerData,
     forex: exampleBrokerData
-            .filter((broker) => broker.isForex)
+            .filter((broker) => broker?.isForex)
             .sort((a, b) => b?.score - a?.score)
             .slice(0, 5),
     stock: exampleBrokerData
-            .filter((broker) => broker.isStock)
+            .filter((broker) => broker?.isStock)
             .sort((a, b) => b?.score - a?.score)
             .slice(0, 5),
 };
