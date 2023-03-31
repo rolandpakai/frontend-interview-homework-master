@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
 import { useMemo } from "react";
 
-import { makeStore } from "../redux/store";
+import { store } from "../redux/store";
 import Wrapper from '../components/Wrapper';
 import Header from '../components/Header';
 import Container from '../components/Container';
@@ -10,8 +10,8 @@ import TopList, { TopCategory } from '../components/TopList';
 import SearchContainer from '../components/SearchContainer';
 
 export default function Home() {
-    const store = useMemo(() => {
-        return makeStore()
+    const memoizedStore = useMemo(() => {
+        return store
     }, []);
 
     const topCategories: TopCategory[] = [
@@ -25,7 +25,7 @@ export default function Home() {
     ];
 
     return (
-        <Provider store={store}>
+        <Provider store={memoizedStore}>
             <Wrapper>
                 <Header title={"Find the right broker and invest on your own"} />
                 <Container>

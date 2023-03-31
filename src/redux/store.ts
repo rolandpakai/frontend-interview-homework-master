@@ -7,23 +7,21 @@ import {eventDataSlice} from "./eventDataSlice";
 
 type AppThunkExtra = {}
 
-export const makeStore = () => {
-    const reducer = combineReducers({
-        brokerData: brokerDataSlice.reducer,
-        eventData: eventDataSlice.reducer,
-    })
+const reducer = combineReducers({
+    brokerData: brokerDataSlice.reducer,
+    eventData: eventDataSlice.reducer,
+});
 
-    return configureStore({
-        reducer,
-        devTools: {
-            name: "BrokerChooser Homework",
-        },
-        middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(),
-    })
-}
+export const store = configureStore({
+    reducer,
+    devTools: {
+        name: "BrokerChooser Homework",
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(),
+});
 
-export type AppStore = ReturnType<typeof makeStore>
+export type AppStore = typeof store
 
 export type AppState = ReturnType<AppStore["getState"]>
 
