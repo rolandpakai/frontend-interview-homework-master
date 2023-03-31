@@ -10,7 +10,7 @@ export type BrokerDataState = {
 };
 
 const initialState: BrokerDataState = {
-    all: exampleBrokerData,
+    all: exampleBrokerData.sort((a, b) => a.name.localeCompare(b.name)),
     forex: exampleBrokerData
             .filter((broker) => broker?.isForex)
             .sort((a, b) => b?.score - a?.score)
