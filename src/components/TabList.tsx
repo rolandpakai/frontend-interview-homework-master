@@ -10,19 +10,15 @@ type TabListProps = { storeKey: string }
 
 const TabList: React.FC<TabListProps> = (props: TabListProps) => {
   const { storeKey } = props;
-  const data = useSelector((state : AppState) => state.brokerData[storeKey as keyof BrokerDataState]);
+  const stateData = useSelector((state : AppState) => state.brokerData[storeKey as keyof BrokerDataState]);
 
   return (
     <div className="h-72 pt-1 mb-3">
-      {data.map((item, index) => (
+      {stateData.map((item, index) => (
         <ListItem
           key={item.id}
           index={index + 1}
-          id={item.id}
-          name={item.name}
-          score={item.score}
-          linkUrl={item.linkUrl} 
-          logoUrl={item.logoUrl}
+          data={item}
           measurementId={TAB_LIST_MAP[storeKey as keyof TabListMap]}
         />
       ))}

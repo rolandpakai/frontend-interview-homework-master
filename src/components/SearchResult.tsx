@@ -13,13 +13,10 @@ const SearchResult: React.FC<SearchResultProps> = (props) => {
 
   return (
     <div className="w-full bg-white rounded my-10">
-      {data.map((item, index) => (
+      {data.map((item) => (
         <SearchResultItem
-          id={item.id}
           key={item.id}
-          name={item.name}
-          linkUrl={item.linkUrl} 
-          logoUrl={item.logoUrl} 
+          data={item}
           measurementId={BROKER_SEARCH_LIST_ID}
         />
       ))}

@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
+import { Broker } from '../data/brokers';
+
 import { 
   EventArg, 
   MeasurementId, 
@@ -11,16 +13,12 @@ import {
 
 type ListItemProps = { 
   index: number,
-  id: number,
-  name: string,
-  score: number,
-  linkUrl: string,
-  logoUrl: string,
+  data: Broker,
   measurementId: MeasurementId,
 };
 
 const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
-  const { index, id, name, score, linkUrl, logoUrl, measurementId } = props;
+  const { data: { id, name, score, linkUrl, logoUrl}, index, measurementId } = props;
   const targetRef = useRef(null);
   const eventArg = {
     type: undefined,

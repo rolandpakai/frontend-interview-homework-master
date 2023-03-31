@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
+import { Broker } from '../data/brokers';
+
 import { 
   EventArg, 
   MeasurementId, 
@@ -10,15 +12,12 @@ import {
   intersectionObserverOptions } from "../logic/event";
 
 type SearchResultItemProps = { 
-  id: number,
-  name: string,
-  linkUrl: string,
-  logoUrl: string,
+  data: Broker,
   measurementId: MeasurementId,
 };
 
 const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultItemProps) => {
-  const { id, name, linkUrl, logoUrl, measurementId } = props;
+  const { data: {id, name, linkUrl, logoUrl}, measurementId } = props;
   const targetRef = useRef(null);
   const eventArg = {
     type: undefined,
