@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 
 import ListItem from './ListItem';
 import { AppState } from '../redux/store';
-import { BrokerDataSlice } from '../redux/brokerDataSlice';
+import { BrokerDataState } from '../redux/brokerDataSlice';
 import { TabListMap, TAB_LIST_MAP } from '../logic/event';
 
 type TabListProps = { storeKey: string }
 
 const TabList: React.FC<TabListProps> = (props: TabListProps) => {
   const { storeKey } = props;
-  const data = useSelector((state : AppState) => state.brokerData[storeKey as keyof BrokerDataSlice]);
+  const data = useSelector((state : AppState) => state.brokerData[storeKey as keyof BrokerDataState]);
 
   return (
     <div className="h-72 pt-1 mb-3">
