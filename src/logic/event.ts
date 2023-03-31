@@ -1,5 +1,5 @@
 import { addEvent } from "../redux/eventDataSlice";
-import { AppDispatch } from "../redux/store";
+import { store } from "../redux/store";
 
 export const BROKER_SEARCH_LIST_ID = "BROKER_SEARCH_LIST_ID"
 export const TOP_5_STOCK_TAB_LIST_ID = "TOP_5_STOCK_TAB_LIST_ID"
@@ -20,7 +20,7 @@ export type MeasurementId =
     | typeof TOP_5_STOCK_TAB_LIST_ID
     | typeof TOP_5_FOREX_TAB_LIST_ID
 
-export type EventType = "click" | "impression";
+export type EventType = "click" | "impression" | undefined;
 
 export type EventArg = {
     type: EventType,
@@ -28,22 +28,42 @@ export type EventArg = {
     measurementId: MeasurementId
 }
 
-export const sendEvent = (arg: EventArg) => {
+export const sendEvent = (arg: EventArg): void => {
     console.log("Event sent: ", arg)
 }
 
-export type EventManager = {
-    eventArg: EventArg,
-    events: Array<String>,
-    dispatchEvent: AppDispatch,
-}
-
-export const eventManager = (param: EventManager): void => {
-    const { eventArg, events, dispatchEvent } = param;
-    const eventKey = [eventArg.type, eventArg.brokerId, eventArg.measurementId].join('-');
+export const handleEvent = (arg: EventArg) => {
+    const appState = store.getState();
+    const events = appState.eventData;
+    const eventKey = [arg.type, arg.brokerId, arg.measurementId].join('-');
 
     if(!events.includes(eventKey)) {
-      dispatchEvent(addEvent(eventKey));
-      sendEvent(eventArg);
+      store.dispatch(addEvent(eventKey));
+      sendEvent(arg);
     }
-}
+};
+
+export const intersectionObserverCallback = (
+    handleIsIntersecting: (arg: EventArg) => void, 
+    arg: EventArg,
+    [entry]: IntersectionObserverEntry [],
+  ) => {
+    if (entry.isIntersecting) {
+        handleIsIntersecting(arg);
+    }
+};
+
+export const intersectionObserverOptions = {
+    rootMargin: "0px",
+    threshold: 1.0,
+};
+
+export const crateIntersectionObserver = (options: object, handleIsIntersecting: (arg: EventArg) => void, arg: EventArg) => {
+    const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            handleIsIntersecting(arg);
+        }
+    }, options);
+
+    return observer;
+};

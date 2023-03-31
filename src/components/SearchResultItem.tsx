@@ -1,10 +1,13 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-import { AppState } from '../redux/store';
-import { EventArg, EventType, MeasurementId, eventManager } from "../logic/event";
+import { 
+  EventArg, 
+  MeasurementId, 
+  handleEvent, 
+  crateIntersectionObserver, 
+  intersectionObserverOptions } from "../logic/event";
 
 type SearchResultItemProps = { 
   id: number,
@@ -16,17 +19,29 @@ type SearchResultItemProps = {
 
 const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultItemProps) => {
   const { id, name, linkUrl, logoUrl, measurementId } = props;
-  const events = useSelector((state : AppState) => state.eventData);
-  const dispatchEvent = useDispatch();
+  const targetRef = useRef(null);
+  const eventArg = {
+    type: undefined,
+    brokerId: id,
+    measurementId 
+  } as EventArg;
+
+  useEffect(() => {
+    const observer = crateIntersectionObserver(intersectionObserverOptions, handleEvent, {...eventArg, type: "impression"});
+    
+     if (targetRef.current) {
+      observer.observe(targetRef.current);
+    }
+
+    return () => {
+      if (targetRef.current) {
+        observer.unobserve(targetRef.current);
+      }
+    };
+  }, [targetRef]);
 
   const handleClick = () => {
-    const eventArg = {
-      type: 'click' as EventType,
-      brokerId: id,
-      measurementId 
-    } as EventArg;
-
-    eventManager({eventArg, events, dispatchEvent});
+    handleEvent({...eventArg, type: "click"});
   };
 
   return (
@@ -42,6 +57,7 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultIt
           </div>
           <div className="flex items-center relative w-max flex-col">
               <a 
+                ref={targetRef}
                 href={linkUrl}
                 onClick={handleClick}
                 data-id={id}
