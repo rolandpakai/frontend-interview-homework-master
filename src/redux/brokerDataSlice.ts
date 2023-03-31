@@ -13,11 +13,11 @@ const initialState: BrokerDataState = {
     all: exampleBrokerData.sort((a, b) => a.name.localeCompare(b.name)),
     forex: exampleBrokerData
             .filter((broker) => broker?.isForex)
-            .sort((a, b) => b?.score - a?.score)
+            .sort((a, b) => b.score - a.score)
             .slice(0, 5),
     stock: exampleBrokerData
             .filter((broker) => broker?.isStock)
-            .sort((a, b) => b?.score - a?.score)
+            .sort((a, b) => b.score - a.score)
             .slice(0, 5),
 };
 
