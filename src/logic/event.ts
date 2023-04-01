@@ -33,7 +33,7 @@ export const sendEvent = (arg: EventArg): void => {
   console.log('Event sent: ', arg);
 };
 
-export const handleEvent = (arg: EventArg) => {
+export const handleEvent = (arg: EventArg): void => {
   const appState = store.getState();
   const events = appState.eventData;
   const eventKey = [arg.type, arg.brokerId, arg.measurementId].join('-');
@@ -53,7 +53,7 @@ export const crateIntersectionObserver = (
   options: object,
   handleIsIntersecting: (arg: EventArg) => void,
   eventArg: EventArg
-) => {
+): IntersectionObserver => {
   const observer = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
       handleIsIntersecting(eventArg);
