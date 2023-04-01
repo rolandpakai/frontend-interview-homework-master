@@ -1,15 +1,12 @@
-const withMT = require("@material-tailwind/react/utils/withMT");
+import withMT from '@material-tailwind/react/utils/withMT';
 /** @type {import('tailwindcss').Config} */
-module.exports = withMT({
+export default withMT({
   mode: 'jit',
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend:
-    {
+    extend: {
       fontFamily: {
-        'geomanist': ['Geomanist', 'sans-serif']
+        geomanist: ['Geomanist', 'sans-serif'],
       },
     },
   },
