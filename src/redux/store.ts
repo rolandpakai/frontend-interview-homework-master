@@ -1,4 +1,4 @@
-import {combineReducers, Middleware} from "redux";
+import {combineReducers} from "redux";
 import {configureStore} from "@reduxjs/toolkit";
 import {useDispatch} from "react-redux";
 
