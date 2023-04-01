@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { addEvent } from "../redux/eventDataSlice";
 import { store } from "../redux/store";
 
@@ -58,12 +59,29 @@ export const intersectionObserverOptions = {
     threshold: 1.0,
 };
 
-export const crateIntersectionObserver = (options: object, handleIsIntersecting: (arg: EventArg) => void, arg: EventArg) => {
+export const crateIntersectionObserver = (options: object, handleIsIntersecting: (arg: EventArg) => void, eventArg: EventArg) => {
     const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
-            handleIsIntersecting(arg);
+            handleIsIntersecting(eventArg);
         }
     }, options);
 
     return observer;
 };
+
+export const observeTarget = (targetRef: React.MutableRefObject<null>, eventArg: EventArg) => {
+    useEffect(() => {
+      const observer = crateIntersectionObserver(intersectionObserverOptions, handleEvent, eventArg);
+  
+      if (targetRef.current) {
+        observer.observe(targetRef.current);
+      }
+  
+      return () => {
+        if (targetRef.current) {
+          
+          observer.unobserve(targetRef.current);
+        }
+      };
+    }, [targetRef]);
+  };

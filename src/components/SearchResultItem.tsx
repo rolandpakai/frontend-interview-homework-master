@@ -8,8 +8,7 @@ import {
   EventArg, 
   MeasurementId, 
   handleEvent, 
-  crateIntersectionObserver, 
-  intersectionObserverOptions } from "../logic/event";
+  observeTarget } from "../logic/event";
 
 type SearchResultItemProps = { 
   data: Broker,
@@ -25,19 +24,7 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultIt
     measurementId 
   } as EventArg;
 
-  useEffect(() => {
-    const observer = crateIntersectionObserver(intersectionObserverOptions, handleEvent, {...eventArg, type: "impression"});
-    
-     if (targetRef.current) {
-      observer.observe(targetRef.current);
-    }
-
-    return () => {
-      if (targetRef.current) {
-        observer.unobserve(targetRef.current);
-      }
-    };
-  }, [targetRef]);
+  observeTarget(targetRef, {...eventArg, type: "impression"});
 
   const handleClick = () => {
     handleEvent({...eventArg, type: "click"});
