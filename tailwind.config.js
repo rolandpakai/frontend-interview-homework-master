@@ -1,17 +1,17 @@
-import withMT from '@material-tailwind/react/utils/withMT';
+import defaultTheme from 'tailwindcss/defaultTheme';
+
 /** @type {import('tailwindcss').Config} */
-export default withMT({
-  mode: 'jit',
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
-  theme: {
-    screens: {
-      sm: '360px',
-    },
-    extend: {
-      fontFamily: {
-        geomanist: ['Geomanist', 'sans-serif'],
-      },
+export const content = ['./src/**/*.{js,ts,jsx,tsx}'];
+export const theme = {
+  screens: {
+    ...defaultTheme.screens,
+    xs: '280px',
+    sm: '360px',
+  },
+  extend: {
+    fontFamily: {
+      geomanist: ['Geomanist', 'sans-serif'],
     },
   },
-  plugins: [],
-});
+};
+export const plugins = [];
