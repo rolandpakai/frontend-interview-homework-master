@@ -33,7 +33,7 @@ export const sendEvent = (arg: EventArg): void => {
   console.log('Event sent: ', arg);
 };
 
-export const handleEvent = (arg: EventArg): void => {
+export const useEventHandler = (arg: EventArg): void => {
   const appState = store.getState();
   const events = appState.eventData;
   const eventKey = [arg.type, arg.brokerId, arg.measurementId].join('-');
@@ -71,7 +71,7 @@ export const useObserveTarget = (
     const current = targetRef.current;
     const observer = crateIntersectionObserver(
       intersectionObserverOptions,
-      handleEvent,
+      useEventHandler,
       eventArg
     );
 

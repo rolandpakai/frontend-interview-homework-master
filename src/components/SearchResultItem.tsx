@@ -7,7 +7,7 @@ import { Broker } from '../data/brokers';
 import {
   EventArg,
   MeasurementId,
-  handleEvent,
+  useEventHandler,
   useObserveTarget,
 } from '../logic/event';
 
@@ -32,8 +32,8 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (
 
   useObserveTarget(targetRef, { ...eventArg, type: 'impression' });
 
-  const handleClick = () => {
-    handleEvent({ ...eventArg, type: 'click' });
+  const useHandleClick = () => {
+    useEventHandler({ ...eventArg, type: 'click' });
   };
 
   return (
@@ -54,9 +54,9 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (
           <a
             ref={targetRef}
             href={linkUrl}
-            onClick={handleClick}
-            rel="nofollow noreferrer"
+            onClick={useHandleClick}
             target="_blank"
+            rel="nofollow noreferrer"
             className="flex flex-row items-center justify-center font-medium uppercase cursor-pointer select-none rounded-lg box-border whitespace-nowrap text-xs sm:text-sm h-6 sm:h-8 px-[12px] sm:px-[20px] bg-blue-800 text-white"
           >
             Visit Broker

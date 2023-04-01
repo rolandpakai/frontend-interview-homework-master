@@ -7,7 +7,7 @@ import { Broker } from '../data/brokers';
 import {
   EventArg,
   MeasurementId,
-  handleEvent,
+  useEventHandler,
   useObserveTarget,
 } from '../logic/event';
 
@@ -32,8 +32,8 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
 
   useObserveTarget(targetRef, { ...eventArg, type: 'impression' });
 
-  const handleClick = () => {
-    handleEvent({ ...eventArg, type: 'click' });
+  const useHandleClick = () => {
+    useEventHandler({ ...eventArg, type: 'click' });
   };
 
   return (
@@ -41,9 +41,9 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
       <a
         ref={targetRef}
         href={linkUrl}
-        rel="nofollow noreferrer"
-        onClick={handleClick}
+        onClick={useHandleClick}
         target="_blank"
+        rel="nofollow noreferrer"
       >
         <div className="hover:bg-secondary-50 mx-2 py-3">
           <div className="flex items-center justify-between">
