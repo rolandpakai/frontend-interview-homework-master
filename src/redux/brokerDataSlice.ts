@@ -1,51 +1,51 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import type { Broker } from "../data/brokers";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { Broker } from '../data/brokers';
 
-import { exampleBrokerData } from "../data/brokers";
+import { exampleBrokerData } from '../data/brokers';
 
 export type BrokerDataSlice = {
-    all: Broker[],
-    forex: Broker[],
-    stock: Broker[],
+  all: Broker[];
+  forex: Broker[];
+  stock: Broker[];
 };
 
 const initialState: BrokerDataSlice = {
-    all: exampleBrokerData.sort((a, b) => a.name.localeCompare(b.name)),
-    forex: exampleBrokerData
-            .filter((broker) => broker?.isForex)
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 5),
-    stock: exampleBrokerData
-            .filter((broker) => broker?.isStock)
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 5),
+  all: exampleBrokerData.sort((a, b) => a.name.localeCompare(b.name)),
+  forex: exampleBrokerData
+    .filter((broker) => broker?.isForex)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5),
+  stock: exampleBrokerData
+    .filter((broker) => broker?.isStock)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5),
 };
 
 export const brokerDataSlice = createSlice({
-    name: "brokerData",
-    initialState,
-    reducers: {
-        setBrokers(state, action: PayloadAction<Broker[]>) {
-            const data = action.payload;
+  name: 'brokerData',
+  initialState,
+  reducers: {
+    setBrokers(state, action: PayloadAction<Broker[]>) {
+      const data = action.payload;
 
-            const forex = data
-			    .filter((broker) => broker.isForex)
-			    .sort((a, b) => b?.score - a?.score)
-                .slice(0, 5);
+      const forex = data
+        .filter((broker) => broker.isForex)
+        .sort((a, b) => b?.score - a?.score)
+        .slice(0, 5);
 
-            const stock = data
-			    .filter((broker) => broker.isStock)
-			    .sort((a, b) => b?.score - a?.score)
-                .slice(0, 5);
-			
-            return {
-                ...state, 
-                all: data,
-                forex,
-                stock,
-            };
-		},
+      const stock = data
+        .filter((broker) => broker.isStock)
+        .sort((a, b) => b?.score - a?.score)
+        .slice(0, 5);
+
+      return {
+        ...state,
+        all: data,
+        forex,
+        stock,
+      };
     },
+  },
 });
 
 export const { setBrokers } = brokerDataSlice.actions;

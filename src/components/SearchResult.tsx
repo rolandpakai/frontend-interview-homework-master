@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 import SearchResultItem from './SearchResultItem';
 import { Broker } from '../data/brokers';
-import { BROKER_SEARCH_LIST_ID } from "../logic/event";
+import { BROKER_SEARCH_LIST_ID } from '../logic/event';
 
-type SearchResultProps = { 
-  data: Broker[],
+type SearchResultProps = {
+  data: Broker[];
 };
 
 const SearchResult: React.FC<SearchResultProps> = (props) => {
@@ -21,7 +21,7 @@ const SearchResult: React.FC<SearchResultProps> = (props) => {
         />
       ))}
     </div>
-  )
+  );
 };
 
 export default SearchResult;

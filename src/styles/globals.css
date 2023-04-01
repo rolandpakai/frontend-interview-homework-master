@@ -5,7 +5,8 @@
 @import url('https://fonts.cdnfonts.com/css/geomanist');
 
 @layer base {
-  html, body {
-    @apply font-geomanist bg-blue-100
+  html,
+  body {
+    @apply font-geomanist bg-blue-100;
   }
 }
