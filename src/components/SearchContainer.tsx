@@ -35,7 +35,7 @@ const SearchContainer: React.FC<SearchContainerProps> = (
   }, [searchTerm, stateData]);
 
   return (
-    <div className="px-8 pt-1 pb-16 relative">
+    <div className="px-1 pt-1 pb-16 relative">
       <SearchInput
         title={title}
         placeholder={placeholder}
