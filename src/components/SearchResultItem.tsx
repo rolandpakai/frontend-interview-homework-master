@@ -8,7 +8,7 @@ import {
   EventArg, 
   MeasurementId, 
   handleEvent, 
-  observeTarget } from "../logic/event";
+  useObserveTarget } from "../logic/event";
 
 type SearchResultItemProps = { 
   data: Broker,
@@ -24,7 +24,7 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultIt
     measurementId 
   } as EventArg;
 
-  observeTarget(targetRef, {...eventArg, type: "impression"});
+  useObserveTarget(targetRef, {...eventArg, type: "impression"});
 
   const handleClick = () => {
     handleEvent({...eventArg, type: "click"});
@@ -46,7 +46,7 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultIt
                 ref={targetRef}
                 href={linkUrl}
                 onClick={handleClick}
-                data-id={id}
+                rel="nofollow noreferrer"
                 target="_blank" 
                 className="flex flex-row items-center justify-center font-medium uppercase cursor-pointer select-none rounded-lg box-border whitespace-nowrap text-xs sm:text-sm h-6 sm:h-8 px-[12px] sm:px-[20px] bg-blue-800 text-white" 
               >

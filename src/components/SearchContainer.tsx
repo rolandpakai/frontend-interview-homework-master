@@ -19,7 +19,7 @@ const SearchContainer: React.FC<SearchContainerProps> = (props: SearchContainerP
 
   useEffect(() => {
     setResult(stateData);
-  }, []);
+  }, [stateData]);
 
   useEffect(() => {
     if (searchTerm) {
@@ -30,7 +30,7 @@ const SearchContainer: React.FC<SearchContainerProps> = (props: SearchContainerP
     } else {
       setResult(stateData);
     }
-  }, [searchTerm]);
+  }, [searchTerm, stateData]);
 
   return (
     <div className="px-8 pt-1 pb-16 relative">

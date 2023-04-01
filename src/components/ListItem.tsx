@@ -8,7 +8,7 @@ import {
   EventArg, 
   MeasurementId, 
   handleEvent, 
-  observeTarget } from "../logic/event";
+  useObserveTarget } from "../logic/event";
 
 type ListItemProps = { 
   index: number,
@@ -25,7 +25,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     measurementId 
   } as EventArg;
 
-  observeTarget(targetRef, {...eventArg, type: "impression"});
+  useObserveTarget(targetRef, {...eventArg, type: "impression"});
 
   const handleClick = () => {
     handleEvent({...eventArg, type: "click"});
@@ -33,7 +33,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
 
   return (
     <div className="w-full border-b px-1 last:border-none border-secondary-50 hover:bg-blue-100">
-      <a ref={targetRef} href={linkUrl} onClick={handleClick} target="_blank">
+      <a ref={targetRef} href={linkUrl} rel="nofollow noreferrer" onClick={handleClick} target="_blank">
           <div className="hover:bg-secondary-50 mx-2 py-3">
               <div className="flex items-center justify-between">
                   <div className="flex items-center justify-start w-7 pl-1 font-semibold">{index}.</div>

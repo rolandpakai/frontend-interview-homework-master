@@ -59,19 +59,20 @@ export const crateIntersectionObserver = (options: object, handleIsIntersecting:
     return observer;
 };
 
-export const observeTarget = (targetRef: React.MutableRefObject<null>, eventArg: EventArg) => {
+export const useObserveTarget = (targetRef: React.MutableRefObject<null>, eventArg: EventArg) => {
     useEffect(() => {
+      const current = targetRef.current;
       const observer = crateIntersectionObserver(intersectionObserverOptions, handleEvent, eventArg);
   
-      if (targetRef.current) {
-        observer.observe(targetRef.current);
+      if (current) {
+        observer.observe(current);
       }
   
       return () => {
-        if (targetRef.current) {
+        if (current) {
           
-          observer.unobserve(targetRef.current);
+          observer.unobserve(current);
         }
       };
-    }, [targetRef]);
+    }, [eventArg, targetRef]);
   };
