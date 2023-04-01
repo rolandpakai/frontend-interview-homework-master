@@ -30,13 +30,13 @@ export default function Home() {
       <Wrapper>
         <Header title={'Find the right broker and invest on your own'} />
         <Container>
-          <Stack className="h-full p-4 lg:w-1/2 order-1 md:order-2 sm:order-2">
+          <Stack className="h-full p-4 lg:w-1/2 order-1 xl:order-1 lg:order-1 md:order-2 sm:order-2 xs:order-2">
             <SearchContainer
               title={'Filter by name'}
               placeholder={'Type Broker Name'}
             />
           </Stack>
-          <Stack className="h-full p-4 lg:w-1/2 order-2 md:order-1 sm:order-1">
+          <Stack className="h-full p-4 lg:w-1/2 order-2 xl:order-2 lg:order-2 md:order-1 sm:order-1 xs:order-1">
             <TopList label={'Top 5 Brokers'} categories={topCategories} />
           </Stack>
         </Container>
