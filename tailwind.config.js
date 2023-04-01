@@ -4,6 +4,9 @@ export default withMT({
   mode: 'jit',
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    screens: {
+      sm: '360px',
+    },
     extend: {
       fontFamily: {
         geomanist: ['Geomanist', 'sans-serif'],
