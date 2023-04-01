@@ -1,14 +1,11 @@
-import React from 'react';
-
-import {
-  Tabs,
-  TabsHeader,
-  TabsBody,
-  Tab,
-  TabPanel,
-} from '@material-tailwind/react';
+import React, { useState } from 'react';
 
 import Box from '../components/Box';
+import Tabs from './tabs/Tabs';
+import TabsHeader from './tabs/TabsHeader';
+import TabsBody from './tabs/TabsBody';
+import Tab from './tabs/Tab';
+import TabPanel from './tabs/TabPanel';
 import TabList from '../components/TabList';
 
 export type TopCategory = {
@@ -23,19 +20,29 @@ type TopListProps = {
 
 const TopList: React.FC<TopListProps> = (props: TopListProps) => {
   const { label, categories } = props;
+  const firstTabValue = categories[0].key;
+  const [activeTab, setActiveTab] = useState(firstTabValue);
   const tabs: React.ReactElement[] = [];
   const tabPanels: React.ReactElement[] = [];
-  const firstTabValue = categories[0].key;
+
+  const handleClick = (newActiveTab: string): void => {
+    setActiveTab(newActiveTab);
+  };
 
   categories.forEach((category) => {
     tabs.push(
-      <Tab key={category.key} value={category.key}>
+      <Tab
+        key={category.key}
+        value={category.key}
+        activeTab={activeTab}
+        onClick={handleClick}
+      >
         {category.label}
       </Tab>
     );
 
     tabPanels.push(
-      <TabPanel key={category.key} value={category.key}>
+      <TabPanel key={category.key} value={category.key} activeTab={activeTab}>
         <TabList storeKey={category.key} />
       </TabPanel>
     );
@@ -43,7 +50,7 @@ const TopList: React.FC<TopListProps> = (props: TopListProps) => {
 
   return (
     <Box title={label}>
-      <Tabs value={firstTabValue}>
+      <Tabs>
         <TabsHeader>{tabs}</TabsHeader>
         <TabsBody>{tabPanels}</TabsBody>
       </Tabs>
