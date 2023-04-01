@@ -46,7 +46,7 @@ export const useEventHandler = (arg: EventArg): void => {
 
 export const intersectionObserverOptions = {
   rootMargin: '0px',
-  threshold: 1.0,
+  threshold: 0.5,
 };
 
 export const crateIntersectionObserver = (
