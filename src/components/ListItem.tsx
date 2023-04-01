@@ -18,7 +18,7 @@ type ListItemProps = {
 };
 
 const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
-  const { data: { id, name, score, linkUrl, logoUrl}, index, measurementId } = props;
+  const { data: { id, name, score, linkUrl, logoUrl }, index, measurementId } = props;
   const targetRef = useRef(null);
   const eventArg = {
     type: undefined,

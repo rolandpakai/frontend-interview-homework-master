@@ -17,7 +17,7 @@ type SearchResultItemProps = {
 };
 
 const SearchResultItem: React.FC<SearchResultItemProps> = (props: SearchResultItemProps) => {
-  const { data: {id, name, linkUrl, logoUrl}, measurementId } = props;
+  const { data: { id, name, linkUrl, logoUrl }, measurementId } = props;
   const targetRef = useRef(null);
   const eventArg = {
     type: undefined,
