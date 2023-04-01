@@ -44,16 +44,6 @@ export const handleEvent = (arg: EventArg) => {
     }
 };
 
-export const intersectionObserverCallback = (
-    handleIsIntersecting: (arg: EventArg) => void, 
-    arg: EventArg,
-    [entry]: IntersectionObserverEntry [],
-  ) => {
-    if (entry.isIntersecting) {
-        handleIsIntersecting(arg);
-    }
-};
-
 export const intersectionObserverOptions = {
     rootMargin: "0px",
     threshold: 1.0,
