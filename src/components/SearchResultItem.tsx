@@ -1,15 +1,10 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import { Broker } from '../data/brokers';
-
-import {
-  EventArg,
-  MeasurementId,
-  useEventHandler,
-  useObserveTarget,
-} from '../logic/event';
+import { MeasurementId } from '../logic/event';
+import Link from './Link';
 
 type SearchResultItemProps = {
   data: Broker;
@@ -23,18 +18,6 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (
     data: { id, name, linkUrl, logoUrl },
     measurementId,
   } = props;
-  const targetRef = useRef(null);
-  const eventArg = {
-    type: undefined,
-    brokerId: id,
-    measurementId,
-  } as EventArg;
-
-  useObserveTarget(targetRef, { ...eventArg, type: 'impression' });
-
-  const useHandleClick = () => {
-    useEventHandler({ ...eventArg, type: 'click' });
-  };
 
   return (
     <div className="py-4 my-4 px-2 bg-white rounded ">
@@ -51,17 +34,15 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (
           </div>
         </div>
         <div className="flex items-center relative w-max flex-col">
-          <a
-            ref={targetRef}
+          <Link
+            id={id}
             href={linkUrl}
-            onClick={useHandleClick}
-            target="_blank"
-            rel="nofollow noreferrer"
+            measurementId={measurementId}
             className="flex flex-row items-center justify-center font-medium uppercase cursor-pointer select-none rounded-lg box-border whitespace-nowrap text-xs sm:text-sm h-6 sm:h-8 px-[12px] sm:px-[20px] bg-blue-600 text-white"
           >
             Visit Broker
             <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

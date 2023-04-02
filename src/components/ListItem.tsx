@@ -1,15 +1,10 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import { Broker } from '../data/brokers';
-
-import {
-  EventArg,
-  MeasurementId,
-  useEventHandler,
-  useObserveTarget,
-} from '../logic/event';
+import { MeasurementId } from '../logic/event';
+import Link from './Link';
 
 type ListItemProps = {
   index: number;
@@ -23,28 +18,10 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
     index,
     measurementId,
   } = props;
-  const targetRef = useRef(null);
-  const eventArg = {
-    type: undefined,
-    brokerId: id,
-    measurementId,
-  } as EventArg;
-
-  useObserveTarget(targetRef, { ...eventArg, type: 'impression' });
-
-  const useHandleClick = () => {
-    useEventHandler({ ...eventArg, type: 'click' });
-  };
 
   return (
     <div className="w-full border-b px-1 last:border-none border-secondary-50 hover:bg-blue-100">
-      <a
-        ref={targetRef}
-        href={linkUrl}
-        onClick={useHandleClick}
-        target="_blank"
-        rel="nofollow noreferrer"
-      >
+      <Link id={id} href={linkUrl} measurementId={measurementId}>
         <div className="hover:bg-secondary-50 mx-2 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center justify-start w-7 pl-1 font-semibold">
@@ -65,7 +42,7 @@ const ListItem: React.FC<ListItemProps> = (props: ListItemProps) => {
             <FontAwesomeIcon icon={faChevronRight} className="ml-2" />
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };
