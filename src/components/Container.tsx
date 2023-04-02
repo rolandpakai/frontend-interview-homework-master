@@ -1,13 +1,12 @@
 import React from 'react';
 
-type ContainerProps = { children: React.ReactNode };
+type ContainerProps = { className?: string; children: React.ReactNode };
 
-const Container: React.FC<ContainerProps> = ({ children }: ContainerProps) => {
-  return (
-    <div className="container px-5 py-12 mx-auto flex flex-wrap">
-      {children}
-    </div>
-  );
+const Container: React.FC<ContainerProps> = ({
+  className,
+  children,
+}: ContainerProps) => {
+  return <div className={`container ${className}`}>{children}</div>;
 };
 
 export default Container;

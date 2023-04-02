@@ -9,12 +9,13 @@ import SearchResult from './SearchResult';
 type SearchContainerProps = {
   title: string;
   placeholder: string;
+  className?: string;
 };
 
 const SearchContainer: React.FC<SearchContainerProps> = (
   props: SearchContainerProps
 ) => {
-  const { title, placeholder } = props;
+  const { title, placeholder, className } = props;
   const stateData = useSelector((state: AppState) => state.brokerData.all);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [result, setResult] = useState<Broker[]>([]);
@@ -35,7 +36,7 @@ const SearchContainer: React.FC<SearchContainerProps> = (
   }, [searchTerm, stateData]);
 
   return (
-    <div className="px-1 pt-1 pb-16 relative">
+    <div className={className}>
       <SearchInput
         title={title}
         placeholder={placeholder}

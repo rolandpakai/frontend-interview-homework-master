@@ -43,7 +43,7 @@ const TopList: React.FC<TopListProps> = (props: TopListProps) => {
 
     tabPanels.push(
       <TabPanel key={category.key} value={category.key} activeTab={activeTab}>
-        <TabList storeKey={category.key} />
+        <TabList className={'h-72 pt-1 mb-3'} storeKey={category.key} />
       </TabPanel>
     );
   });

@@ -1,9 +1,9 @@
 import React from 'react';
 
-type WrapperProps = { children: React.ReactNode };
+type WrapperProps = { className?: string; children: React.ReactNode };
 
-const Wrapper: React.FC<WrapperProps> = ({ children }) => {
-  return <div className="w-full h-full">{children}</div>;
+const Wrapper: React.FC<WrapperProps> = ({ className, children }) => {
+  return <div className={`w-full h-full ${className}`}>{children}</div>;
 };
 
 export default Wrapper;
