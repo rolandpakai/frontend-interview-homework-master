@@ -16,11 +16,13 @@ const Tab: React.FC<TabProps> = (props: TabProps) => {
       role="tab"
       data-value={value}
       onClick={() => onClick(value)}
-      className="grid place-items-center text-center w-full h-full relative bg-transparent p-1 text-blue-gray-900 antialiased font-sans text-base font-normal leading-relaxed select-none cursor-pointer"
+      className={`grid place-items-center text-center w-full h-full py-2 relative bg-transparent p-1 antialiased text-base font-bold leading-relaxed select-none cursor-pointer hover:text-blue-600 ${
+        isActive && 'text-blue-600'
+      }`}
     >
       <div className="z-20">{children}</div>
       {isActive && (
-        <div className="absolute top-0 left-0 right-0 z-10 h-full bg-white rounded-md shadow" />
+        <div className="absolute top-0 left-0 right-0 z-10 h-full bg-gray-100 rounded-tl-md rounded-tr-md border-b-2 border-blue-600" />
       )}
     </li>
   );

@@ -37,7 +37,7 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (
   };
 
   return (
-    <div className="py-4 mx-2">
+    <div className="py-4 my-4 px-2 bg-white rounded ">
       <div className="flex items-center justify-between">
         <div className="w-full">
           <div className="flex items-center text-sm font-semibold">
@@ -57,7 +57,7 @@ const SearchResultItem: React.FC<SearchResultItemProps> = (
             onClick={useHandleClick}
             target="_blank"
             rel="nofollow noreferrer"
-            className="flex flex-row items-center justify-center font-medium uppercase cursor-pointer select-none rounded-lg box-border whitespace-nowrap text-xs sm:text-sm h-6 sm:h-8 px-[12px] sm:px-[20px] bg-blue-800 text-white"
+            className="flex flex-row items-center justify-center font-medium uppercase cursor-pointer select-none rounded-lg box-border whitespace-nowrap text-xs sm:text-sm h-6 sm:h-8 px-[12px] sm:px-[20px] bg-blue-600 text-white"
           >
             Visit Broker
             <FontAwesomeIcon icon={faArrowRight} className="ml-2" />

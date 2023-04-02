@@ -16,9 +16,7 @@ const TabPanel: React.FC<TabPanelProps> = (props: TabPanelProps) => {
         <div
           role="tabpanel"
           data-value={value}
-          className={`w-full h-max relative text-gray-700 p-4 antialiased font-sans text-base font-light leading-relaxed fade ${
-            !isActive && 'fade-out'
-          }`}
+          className={`w-full h-max relative p-4 antialiased text-base font-light leading-relaxed`}
         >
           {children}
         </div>

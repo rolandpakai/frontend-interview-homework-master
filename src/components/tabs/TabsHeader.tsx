@@ -7,7 +7,7 @@ const TabsHeader: React.FC<TabsHeaderProps> = ({ children }) => {
     <nav>
       <ul
         role="tablist"
-        className="flex relative bg-blue-gray-50 bg-opacity-60 rounded-lg p-1"
+        className="flex relative bg-blue-gray-50 bg-opacity-60 m-1 mt-4 border-b border-gray-400"
       >
         {children}
       </ul>

@@ -6,11 +6,12 @@ type SearchInputProps = {
   title: string;
   placeholder: string;
   value: string;
+  className?: string;
   setSearchTerm: (value: string) => void;
 };
 
 const SearchInput: React.FC<SearchInputProps> = (props: SearchInputProps) => {
-  const { title, placeholder, value, setSearchTerm } = props;
+  const { title, placeholder, value, className, setSearchTerm } = props;
 
   const onChangeHandler = (value: string) => {
     setSearchTerm(value);
@@ -21,7 +22,7 @@ const SearchInput: React.FC<SearchInputProps> = (props: SearchInputProps) => {
   };
 
   return (
-    <div className="">
+    <div className={`w-full ${className}`}>
       <label htmlFor="search" className="block mb-1 mx-2 text-sm text-gray-600">
         {title}
       </label>

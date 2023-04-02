@@ -43,7 +43,7 @@ const SearchContainer: React.FC<SearchContainerProps> = (
         value={searchTerm}
         setSearchTerm={setSearchTerm}
       />
-      <SearchResult data={result} />
+      <SearchResult data={result} className={'my-10'} />
     </div>
   );
 };
