@@ -9,6 +9,7 @@ Here you can find a starter NextJS project where you can implement the following
 Your task is to implement the following page:
 
 #### Desktop view:
+
 <img src="./screen/desktop.png" style="width: 400px">
 
 #### Mobile view:
@@ -16,8 +17,9 @@ Your task is to implement the following page:
 <img src="./screen/mobile.png" style="width: 200px">
 
 This page consists of 2 main parts:
-1) A broker list that can be filtered using by name using the input above it. The list updates dynamically based on the user input. The blue buttons are redirecting the user to the link `linkUrl` opening in a new page. All brokers are shown for empty search field.
-2) A box that features 2 tabs that show the top 5 brokers in each category. The row themselves can be clicked, which behaves just like the blue button on the row item from the search list.   
+
+1. A broker list that can be filtered using by name using the input above it. The list updates dynamically based on the user input. The blue buttons are redirecting the user to the link `linkUrl` opening in a new page. All brokers are shown for empty search field.
+2. A box that features 2 tabs that show the top 5 brokers in each category. The row themselves can be clicked, which behaves just like the blue button on the row item from the search list.
 
 Besides creating a functional implementation of the design (you can find the required data in the [brokers.ts](./src/data/brokers.ts)) file, we would also like to measure the user interactions on the page.
 
@@ -27,7 +29,7 @@ We would like to measure the `impression` and the `click` events of each ui elem
 
 #### Requirements
 
-- event calls should just call `sendEvent`  (defined in   [event.ts](./src/logic/event.ts))
+- event calls should just call `sendEvent` (defined in [event.ts](./src/logic/event.ts))
 - for each [`MeasurementId`, `BrokerId`, `event type`] triple there should be only one event sent out per page load. See examples below:
   - Interactive Brokers appears when the filter is empty, an `impression` event is sent
   - if a broker reappears in the list when the search changes, no `impression` event should be sent
@@ -53,3 +55,7 @@ npm run dev
 # or
 yarn dev
 ```
+
+## Solution
+
+[![Netlify Solution](https://api.netlify.com/api/v1/badges/e5670c2e-7a9f-4be2-955b-6bf8608ddc62/deploy-status)](https://sage-fox-e98faa.netlify.app/)
